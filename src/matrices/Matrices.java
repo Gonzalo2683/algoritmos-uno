@@ -24,11 +24,14 @@ public class Matrices {
         int[] v1 = {1,3,5,7,15,25};
         int[] v22 = {2,8,35,50};
         int[] vr = new int[v1.length + v22.length];
-        vr = MERGE(v1,v22);
+        //vr = MERGE(v1,v22);
         // mostrar(vr);
         
-        int bus = BPUNTOMEDIO(v1, 3);
-        System.out.println(bus);
+        //int bus = BPUNTOMEDIO(v1, 3);
+        //System.out.println(bus);
+        
+        NUEVO2(v);
+        mostrar(v);
     }
    
     public static void mostrar(int[] v){
@@ -144,4 +147,43 @@ public class Matrices {
         
         return -1;
     }
+    
+        
+    public static void NUEVO2(int[]v){
+        int posmin = 0;
+        int posmax = 0;
+        int min = v[0];
+        int max = v[0];
+        
+        
+        for (int i = 0, j = v.length; i < j; i++, j--) {
+            for (int k = 0; k < j; k++) {
+                if (v[k] < min) {
+                    min = v[k];
+                    posmin = k;
+                }
+                
+                if (v[k] > max){
+                    max = v[k];
+                    posmax = k;
+                }
+            }
+            
+            int aux = v[i];
+            v[i] = v[posmin];
+            v[posmin] = aux;
+            
+            if (v[posmin] == max) {
+                aux = v[j];
+                v[j] = max;
+                v[posmin] = aux;
+                
+            }
+            
+            aux = v[j];
+            v[j] = max;
+            v[posmax] = aux;
+        }
+    }
+    
 }
