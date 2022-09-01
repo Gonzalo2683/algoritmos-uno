@@ -25,7 +25,10 @@ public class Matrices {
         int[] v22 = {2,8,35,50};
         int[] vr = new int[v1.length + v22.length];
         vr = MERGE(v1,v22);
-        mostrar(vr);
+        // mostrar(vr);
+        
+        int bus = BPUNTOMEDIO(v1, 3);
+        System.out.println(bus);
     }
    
     public static void mostrar(int[] v){
@@ -119,4 +122,26 @@ public class Matrices {
     
     
     // busqueda punto medio
+    public static int BPUNTOMEDIO(int[]v, int buscado){
+        int izquierda = 0;
+        int derecha = v.length - 1;
+        
+        while(izquierda <= derecha){
+            int ptomedio = (izquierda+derecha)/2;
+            int valorPtoMedio = v[ptomedio];
+            
+            if (buscado == valorPtoMedio) {
+                return ptomedio;
+            }
+            
+            if (buscado < valorPtoMedio) {
+                derecha = ptomedio;
+            }
+            else {
+                izquierda = ptomedio;
+            }
+        }
+        
+        return -1;
+    }
 }
