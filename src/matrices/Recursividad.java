@@ -21,7 +21,18 @@ public class Recursividad {
         
         // 1 2 3 4 5
        //  System.out.println(divide(8, 2));
-        System.out.println(invertir(123));
+        //System.out.println(invertir(123));
+        //System.out.println(sumar(123));
+        int[] a = {2, 5, 6, 20};
+        // System.out.println(sumarVector(a));
+        
+        // System.out.println(minimo(a, 0, a[0]));
+        
+        int[][] b = {
+            {2, 4, 5},
+            {1, 2, 3}
+        };
+        System.out.println(sumarMatriz(b, 0, 0));
     }
     
     public static int fact(int n) {
@@ -117,7 +128,59 @@ public class Recursividad {
             orden = orden * 10;
         }
         
-        return (n % 10) * orden + invertir(n/10);
+        int mod = (n % 10);
+        
+        return mod * orden + invertir(n/10);
         
     }
+    
+    public static int sumar(int n) {
+        if (n < 10) {
+            return n;
+        }
+        
+        int mod = (n % 10);  
+        return mod + sumar(n/10);
+    }
+    
+    public static int sumarVector(int[] n) {
+        int indice = 0;
+        return sumarVector(n, indice);
+    }
+    
+    public static int sumarVector(int[] v, int indice) {
+        if (indice == v.length) {
+            return 0;
+        }
+        
+        return v[indice] + sumarVector(v, indice + 1);
+    }
+    
+    public static int minimo(int[] v, int indice, int min) {
+        if (indice == v.length) {
+            return min;
+        }
+        
+        if (v[indice] < min) {
+            min = v[indice];
+        }
+        
+        return minimo(v, indice + 1, min);
+    }
+    
+    // ejercicio 8 complementario, en hoja esta mal la firma
+    public static int sumarMatriz(int[][] m, int fila, int col) {
+        if (col == m[0].length) {
+            col = 0;
+            return sumarMatriz(m, fila + 1, col);
+        }
+        
+        if (fila == m.length) {
+            return 0;
+        }
+        
+        return m[fila][col] + sumarMatriz(m, fila, col + 1);
+    }
+    
+    
 }
