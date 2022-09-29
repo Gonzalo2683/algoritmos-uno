@@ -129,7 +129,13 @@ public class Lista implements ILista{
 
     @Override
     public void mostrarREC(NodoLista nodo) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if (nodo == null) {
+            return;
+        }
+        
+        // Si llamo primero la recursividad, muestro de forma inversa
+        System.out.println(nodo.getDato());
+        mostrarREC(nodo.getSig());
     }
 
     @Override
@@ -186,7 +192,17 @@ public class Lista implements ILista{
 
     @Override
     public int largo() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        int counter = 0;
+
+        if (esVacia()) {
+            return counter;
+        }
+        
+        NodoLista aux = inicio;
+        
+        while (aux.getSig() != null) {
+            //
+        }
     }
      
 }

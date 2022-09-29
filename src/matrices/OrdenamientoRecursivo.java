@@ -117,7 +117,7 @@ public class OrdenamientoRecursivo {
     }
     
     public static int islas(int mapa[][], int i, int c){
-    
+        return 1;
     }
     
 }
