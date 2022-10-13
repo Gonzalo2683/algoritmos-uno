@@ -224,5 +224,89 @@ public class Lista implements ILista{
                 }
             }                       
         }
-    }     
+    }
+    
+    // Practico_6_-_Estructuras-_Lista.pdf
+    
+
+    // Ejercicio 3
+    // a)
+    public boolean iguales(Lista l, Lista p) {
+        if (l.esVacia() || p.esVacia()) {
+            return false;
+        }
+        return iguales(l.inicio, p.inicio);
+    }
+    
+    public boolean iguales(NodoLista nl, NodoLista np) {
+        if (nl == null && np == null) {
+            return true;
+        }
+        
+        if (nl == null || np == null) {
+            return false;
+        }
+        
+        if (nl.getDato() != np.getDato()) {
+            return false;
+        }
+        
+        return iguales(nl.getSig(), np.getSig());
+    }
+    
+    // b
+    public Lista intercalar(Lista l, Lista p) {
+        Lista nueva = new Lista();
+        intercalar(l.inicio, p.inicio, nueva);
+        return nueva;
+    }
+
+    /*public void intercalar(NodoLista nl, NodoLista np, Lista nueva) {
+        if (nl != null && np != null) {
+            if (nl.getDato() <= np.getDato()) {
+                nueva.agregarFinal(nl);
+                nueva.agregarFinal(np);
+            }
+            else {
+                nueva.agregarFinal(np);
+                nueva.agregarFinal(nl);
+            }
+            intercalar(nl.getSig(), np.getSig(), nueva);
+        }
+    }*/
+    
+    public void intercalar(NodoLista nl, NodoLista np, Lista nueva) {
+        if (nl == null && np == null) {
+            return;
+        }
+        
+        if (nl != null && np == null) {
+            intercalar(nl.getSig(), np, nueva);
+            NodoLista nvo = new NodoLista(nl.getDato());
+            nueva.agregarInicio(nvo);
+            return;
+        }
+        
+        if (nl == null && np != null) {
+            intercalar(nl, np.getSig(), nueva);
+            NodoLista nvo = new NodoLista(np.getDato());
+            nueva.agregarInicio(nvo);
+            return;
+        }
+        
+        if (nl.getDato() <= np.getDato()) {
+            intercalar(nl.getSig(), np, nueva);
+            NodoLista nvo = new NodoLista(nl.getDato());
+            nueva.agregarInicio(nvo);
+            return;
+        }
+        
+        if (nl.getDato() > np.getDato()) {
+            intercalar(nl, np.getSig(), nueva);
+            NodoLista nvo = new NodoLista(np.getDato());
+            nueva.agregarInicio(nvo);
+            return;
+        }
+        
+    }
 }
