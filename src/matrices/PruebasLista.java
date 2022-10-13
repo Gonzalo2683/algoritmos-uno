@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package matrices;
 
 /**
@@ -23,7 +19,19 @@ public class PruebasLista {
         lista.agregarFinal(nd3);
         lista.agregarFinal(nd4);
         
-        lista.borrar(9);
+        //lista.borrar(9);
+        
+        System.out.print("Largo de la lista: " + lista.cantElementos());
+        
+        
+        // Obtener elemento.
+        NodoLista obtenido = lista.obtenerElemento(nd3);
+        //System.out.println("Original: " + nd3.getDato());
+        //System.out.println("Encontrado: " + obtenido.getDato());
+        
+        // Borrar nodo lista.
+        lista.borrarElemento(nd4);
+        
         lista.mostrar();
     }
     

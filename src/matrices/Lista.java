@@ -4,8 +4,6 @@
  */
 package matrices;
 
-import org.w3c.dom.NodeList;
-
 /**
  *
  * @author alumnoFI
@@ -101,10 +99,12 @@ public class Lista implements ILista{
     @Override
     public void mostrar() {
         NodoLista aux = inicio;
+        System.out.println("");
         while (aux != null) {                
             System.out.println(aux.getDato());
             aux = aux.getSig();
         }
+        System.out.println("");
     }
 
     @Override
@@ -114,17 +114,53 @@ public class Lista implements ILista{
 
     @Override
     public void borrarElemento(NodoLista nodo) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if (!esVacia()) {
+            
+            if (inicio == nodo) {
+                borrarInicio();
+            }
+            else {
+                NodoLista aux = inicio;
+
+                while (aux.getSig() != null && aux.getSig() != nodo) {
+                    aux = aux.getSig();
+                } 
+                
+                if (aux.getSig() != null) {
+                    aux.setSig(aux.getSig().getSig());
+                }
+            }                       
+        }
     }
 
     @Override
     public int cantElementos() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        int counter = 0;
+
+        if (esVacia()) {
+            return counter;
+        }
+        
+        NodoLista aux = inicio;
+        
+        while (aux != null) {
+            counter++;
+            aux = aux.getSig();
+        }
+        return counter;
     }
 
     @Override
     public NodoLista obtenerElemento(NodoLista nodo) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        NodoLista aux = inicio;
+        
+        while (aux != null) {            
+            if (nodo == aux){
+                return aux;
+            }
+            aux = aux.getSig();
+        }
+        return null;
     }
 
     @Override
@@ -188,21 +224,5 @@ public class Lista implements ILista{
                 }
             }                       
         }
-    }
-
-    @Override
-    public int largo() {
-        int counter = 0;
-
-        if (esVacia()) {
-            return counter;
-        }
-        
-        NodoLista aux = inicio;
-        
-        while (aux.getSig() != null) {
-            //
-        }
-    }
-     
+    }     
 }

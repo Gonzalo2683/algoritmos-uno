@@ -83,7 +83,5 @@ public interface ILista {
     public  boolean pertenece (int x);
 
     public void borrar (int x);
-    
-    public int largo ();
-    
+        
 }
